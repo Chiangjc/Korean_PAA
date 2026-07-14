@@ -1,0 +1,110 @@
+[
+  {
+    "korean": "접사",
+    "chinese": "詞綴（接辭）"
+  },
+  {
+    "korean": "부사/명사",
+    "chinese": "副詞／名詞"
+  },
+  {
+    "korean": "동사",
+    "chinese": "動詞"
+  },
+  {
+    "korean": "명사",
+    "chinese": "名詞"
+  },
+  {
+    "korean": "형용사",
+    "chinese": "形容詞"
+  },
+  {
+    "korean": "부사",
+    "chinese": "副詞"
+  },
+  {
+    "korean": "명사/부사",
+    "chinese": "名詞／副詞"
+  },
+  {
+    "korean": "관형사",
+    "chinese": "冠形詞"
+  },
+  {
+    "korean": "의존명사",
+    "chinese": "依存名詞（形式名詞）"
+  },
+  {
+    "korean": "관형사·명사",
+    "chinese": "冠形詞／名詞"
+  },
+  {
+    "korean": "줄어든 말",
+    "chinese": "縮略語（縮短形式）"
+  },
+  {
+    "korean": "명사/대명사",
+    "chinese": "名詞／代名詞"
+  },
+  {
+    "korean": "대명사",
+    "chinese": "代名詞"
+  },
+  {
+    "korean": "부사/감탄사",
+    "chinese": "副詞／感嘆詞"
+  },
+  {
+    "korean": "감탄사",
+    "chinese": "感嘆詞"
+  },
+  {
+    "korean": "의존명사/명사",
+    "chinese": "依存名詞／名詞"
+  },
+  {
+    "korean": "명사/의존명사",
+    "chinese": "名詞／依存名詞"
+  },
+  {
+    "korean": "수사·관형사",
+    "chinese": "數詞／冠形詞"
+  },
+  {
+    "korean": "형용사/동사",
+    "chinese": "形容詞／動詞"
+  },
+  {
+    "korean": "명사/관형사",
+    "chinese": "名詞／冠形詞"
+  },
+  {
+    "korean": "관형사/수사",
+    "chinese": "冠形詞／數詞"
+  },
+  {
+    "korean": "대명사/관형사",
+    "chinese": "代名詞／冠形詞"
+  },
+  {
+    "korean": "부사/관형사·명사",
+    "chinese": "副詞／冠形詞／名詞"
+  },
+  {
+    "korean": "수사",
+    "chinese": "數詞"
+  },
+  {
+    "korean": "수사·관형사/명사",
+    "chinese": "數詞／冠形詞／名詞"
+  },
+  {
+    "korean": "동사/형용사",
+    "chinese": "動詞／形容詞"
+  },
+  {
+    "korean": "수사/명사",
+    "chinese": "數詞／名詞"
+  }
+]

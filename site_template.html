@@ -1,0 +1,802 @@
+<title>토픽 단어장 · TOPIK 韓語單字卡</title>
+<meta name="description" content="TOPIK 韓語單字閃卡練習" />
+<style>
+  :root {
+    --bg: #e7e9de;
+    --surface: #fbfaf4;
+    --surface-edge: #dedccb;
+    --ink: #20261f;
+    --ink-soft: #5c6055;
+    --accent: #2c4a6e;
+    --accent-soft: #5c7a9c;
+    --seal: #b23a2e;
+    --seal-soft: #d98a80;
+    --chip-bg: #dedfd1;
+    --chip-fg: #3c4038;
+    --chip-bg-active: #2c4a6e;
+    --chip-fg-active: #fbfaf4;
+    --focus: #2c4a6e;
+    --shadow: rgba(32, 38, 31, 0.18);
+
+    --font-kr: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Nanum Gothic", sans-serif;
+    --font-zh: "Noto Serif TC", "PMingLiU", "Songti TC", "Microsoft JhengHei", serif;
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10161b;
+      --surface: #1b2530;
+      --surface-edge: #293544;
+      --ink: #e9e6da;
+      --ink-soft: #a7ac9f;
+      --accent: #8fb0d6;
+      --accent-soft: #5e7c9e;
+      --seal: #e2695a;
+      --seal-soft: #8a4038;
+      --chip-bg: #243040;
+      --chip-fg: #c7cbc0;
+      --chip-bg-active: #8fb0d6;
+      --chip-fg-active: #10161b;
+      --focus: #8fb0d6;
+      --shadow: rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10161b;
+    --surface: #1b2530;
+    --surface-edge: #293544;
+    --ink: #e9e6da;
+    --ink-soft: #a7ac9f;
+    --accent: #8fb0d6;
+    --accent-soft: #5e7c9e;
+    --seal: #e2695a;
+    --seal-soft: #8a4038;
+    --chip-bg: #243040;
+    --chip-fg: #c7cbc0;
+    --chip-bg-active: #8fb0d6;
+    --chip-fg-active: #10161b;
+    --focus: #8fb0d6;
+    --shadow: rgba(0, 0, 0, 0.5);
+  }
+  :root[data-theme="light"] {
+    --bg: #e7e9de;
+    --surface: #fbfaf4;
+    --surface-edge: #dedccb;
+    --ink: #20261f;
+    --ink-soft: #5c6055;
+    --accent: #2c4a6e;
+    --accent-soft: #5c7a9c;
+    --seal: #b23a2e;
+    --seal-soft: #d98a80;
+    --chip-bg: #dedfd1;
+    --chip-fg: #3c4038;
+    --chip-bg-active: #2c4a6e;
+    --chip-fg-active: #fbfaf4;
+    --focus: #2c4a6e;
+    --shadow: rgba(32, 38, 31, 0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    min-height: 100%;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.08) 0, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.05) 0, transparent 45%);
+  }
+
+  .app {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 16px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* ---- topbar ---- */
+  .topbar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    background: var(--accent);
+    display: inline-block;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .brand h1 {
+    font-family: var(--font-kr);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  .brand .sub {
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 2px;
+  }
+
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--chip-bg);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.35s ease;
+  }
+  .progress-label {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* ---- filters ---- */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+  }
+  .chip-group {
+    display: flex;
+    gap: 6px;
+    background: transparent;
+  }
+  .chip {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: var(--chip-bg);
+    color: var(--chip-fg);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--chip-bg-active);
+    color: var(--chip-fg-active);
+    font-weight: 600;
+  }
+  .chip:focus-visible, .icon-btn:focus-visible, .ctrl-btn:focus-visible,
+  .learn-btn:focus-visible, .card:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .icon-btn-group {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+  }
+  .icon-btn {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--surface-edge);
+    background: var(--surface);
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .icon-btn[aria-pressed="true"] {
+    color: var(--accent);
+    border-color: var(--accent-soft);
+  }
+
+  /* ---- stage / card ---- */
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .deck-meta {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 5 / 3.4;
+    perspective: 1400px;
+    cursor: pointer;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .card.is-flipped .card-inner { transform: rotateY(180deg); }
+  .card-inner.no-transition { transition: none !important; }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: var(--surface);
+    border: 1px solid var(--surface-edge);
+    box-shadow: 0 14px 30px -12px var(--shadow), 0 2px 8px -2px var(--shadow);
+    backface-visibility: hidden;
+    background-image:
+      radial-gradient(circle at 10% 12%, rgba(0, 0, 0, 0.035) 0, transparent 40%),
+      radial-gradient(circle at 92% 88%, rgba(0, 0, 0, 0.03) 0, transparent 40%);
+  }
+  .card-back { transform: rotateY(180deg); }
+
+  .face-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pos-tag {
+    font-size: 0.72rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    padding: 3px 12px;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+  }
+  .word {
+    font-family: var(--font-kr);
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .word sup {
+    font-size: 0.42em;
+    color: var(--accent);
+    margin-left: 2px;
+  }
+  .flip-hint {
+    position: absolute;
+    bottom: 16px;
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .zh-word {
+    font-family: var(--font-zh);
+    font-size: clamp(1.5rem, 6.5vw, 2.05rem);
+    font-weight: 600;
+    margin: 0 0 14px;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .guide-text {
+    font-family: var(--font-kr);
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .guide-text:empty { display: none; }
+
+  .seal {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    border: 2.5px solid var(--seal);
+    color: var(--seal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-zh);
+    font-size: 0.85rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: rotate(-14deg) scale(1.3);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: multiply;
+  }
+  :root[data-theme="dark"] .seal, :root:not([data-theme="light"]) .seal {
+    mix-blend-mode: normal;
+  }
+  .card.is-learned .seal {
+    opacity: 0.9;
+    transform: rotate(-14deg) scale(1);
+  }
+
+  /* ---- controls ---- */
+  .controls {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ctrl-btn, .learn-btn {
+    font-family: var(--font-ui);
+    border-radius: 12px;
+    border: 1px solid var(--surface-edge);
+    background: var(--surface);
+    color: var(--ink);
+    padding: 12px 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .ctrl-btn { flex: 0 0 auto; width: 88px; color: var(--ink-soft); }
+  .ctrl-btn:disabled, .learn-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .learn-btn {
+    flex: 1;
+    font-weight: 600;
+    border-color: var(--seal-soft);
+    color: var(--seal);
+  }
+  .learn-btn[data-active="true"] {
+    background: var(--seal);
+    color: var(--surface);
+    border-color: var(--seal);
+  }
+
+  .kbd-hint {
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+  }
+
+  .statusbar {
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    padding: 32px 16px;
+    border: 1px dashed var(--surface-edge);
+    border-radius: 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-inner, .progress-fill, .seal { transition: none !important; }
+  }
+
+  @media (max-width: 380px) {
+    .ctrl-btn { width: 76px; font-size: 0.78rem; padding: 12px 6px; }
+  }
+</style>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h1>토픽 단어장</h1>
+      <span class="sub">TOPIK 韓語單字卡</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 0 已學會</div>
+    </div>
+  </header>
+
+  <nav class="filters" aria-label="篩選">
+    <div class="chip-group" id="levelChips" role="group" aria-label="等級篩選"></div>
+    <div class="chip-group" id="statusChips" role="group" aria-label="狀態篩選"></div>
+    <div class="icon-btn-group">
+      <button class="icon-btn" id="shuffleBtn" type="button" aria-pressed="false">隨機排序</button>
+      <button class="icon-btn" id="reverseBtn" type="button" aria-pressed="false">韓 → 中</button>
+    </div>
+  </nav>
+
+  <main class="stage">
+    <div class="deck-meta" id="deckMeta">—</div>
+
+    <div class="card" id="card" tabindex="0" role="button" aria-label="點擊卡片看答案">
+      <div class="card-inner" id="cardInner">
+        <section class="card-face card-front">
+          <div class="face-content" id="frontContent"></div>
+          <span class="flip-hint">點擊卡片看答案</span>
+        </section>
+        <section class="card-face card-back">
+          <div class="face-content" id="backContent"></div>
+          <span class="flip-hint">點擊卡片返回</span>
+        </section>
+      </div>
+      <div class="seal" id="sealMark" aria-hidden="true">已學會</div>
+    </div>
+
+    <div class="kr-content" id="krContent" hidden>
+      <span class="pos-tag" id="posTag"></span>
+      <h2 class="word" id="wordText"></h2>
+    </div>
+    <div class="zh-content" id="zhContent" hidden>
+      <p class="zh-word" id="zhText"></p>
+      <p class="guide-text" id="guideText"></p>
+    </div>
+
+    <div class="controls">
+      <button class="ctrl-btn" id="prevBtn" type="button" aria-label="上一個">◂ 上一個</button>
+      <button class="learn-btn" id="learnBtn" type="button">標記已學會</button>
+      <button class="ctrl-btn" id="nextBtn" type="button" aria-label="下一個">下一個 ▸</button>
+    </div>
+
+    <p class="kbd-hint">鍵盤操作：← → 換單字・空白鍵 / ↑ 翻面・↓ / L 標記已學會・R 切換方向</p>
+
+    <p class="statusbar" id="emptyState" hidden>這個篩選條件下沒有符合的單字。</p>
+  </main>
+</div>
+
+<script type="application/json" id="vocab-data">__VOCAB_DATA__</script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- storage ---------- */
+  var Storage = {
+    get: function (key, fallback) {
+      try {
+        var raw = localStorage.getItem(key);
+        return raw != null ? JSON.parse(raw) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    },
+    set: function (key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (e) {}
+    }
+  };
+
+  var LEARNED_KEY = "topik-flashcards:learned";
+  var PREFS_KEY = "topik-flashcards:prefs";
+
+  /* ---------- data ---------- */
+  var POS_MAP = {
+    "명사": "名詞", "동사": "動詞", "형용사": "形容詞", "부사": "副詞",
+    "대명사": "代名詞", "수사": "數詞", "관형사": "冠形詞", "감탄사": "感嘆詞",
+    "의존명사": "依存名詞", "접사": "接辭", "조사": "助詞", "줄어든 말": "縮略語"
+  };
+  var SUP_DIGITS = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+
+  function translatePos(pos) {
+    return pos.split(/[\/·]/).map(function (p) { return POS_MAP[p] || p; }).join(" / ");
+  }
+  function toSuperscript(numStr) {
+    return numStr.split("").map(function (d) { return SUP_DIGITS[d] || d; }).join("");
+  }
+  function parseWord(w) {
+    var m = w.match(/^(.*?)(\d+)$/);
+    return m ? { base: m[1], num: m[2] } : { base: w, num: null };
+  }
+
+  var raw = JSON.parse(document.getElementById("vocab-data").textContent);
+  var DATA = raw.map(function (r) {
+    return { level: r[0], word: r[1], guide: r[2], pos: r[3], zh: r[4] };
+  });
+
+  /* ---------- state ---------- */
+  var state = {
+    levelFilter: "all",
+    statusFilter: "all",
+    shuffle: false,
+    reversed: false,
+    learned: {},
+    deck: [],
+    order: [],
+    index: 0,
+    flipped: false,
+    positions: {}
+  };
+
+  function deckKey() { return state.levelFilter + "|" + state.statusFilter + "|" + (state.shuffle ? "shuf" : "seq"); }
+
+  function shuffleArray(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function computeDeck() {
+    var deck = DATA.filter(function (v) {
+      if (state.levelFilter !== "all" && v.level !== state.levelFilter) return false;
+      var isLearned = !!state.learned[v.word];
+      if (state.statusFilter === "learning" && isLearned) return false;
+      if (state.statusFilter === "learned" && !isLearned) return false;
+      return true;
+    });
+    var order = deck.map(function (_, i) { return i; });
+    if (state.shuffle) order = shuffleArray(order);
+    state.deck = deck;
+    state.order = order;
+    var key = deckKey();
+    state.index = state.positions[key] || 0;
+    if (state.index >= order.length) state.index = 0;
+    state.flipped = false;
+  }
+
+  function currentCard() {
+    if (!state.deck.length) return null;
+    return state.deck[state.order[state.index]];
+  }
+
+  function persistPrefs() {
+    Storage.set(PREFS_KEY, {
+      levelFilter: state.levelFilter,
+      statusFilter: state.statusFilter,
+      shuffle: state.shuffle,
+      reversed: state.reversed
+    });
+  }
+  function persistLearned() {
+    Storage.set(LEARNED_KEY, Object.keys(state.learned));
+  }
+
+  /* ---------- render ---------- */
+  var el = {
+    levelChips: document.getElementById("levelChips"),
+    statusChips: document.getElementById("statusChips"),
+    shuffleBtn: document.getElementById("shuffleBtn"),
+    reverseBtn: document.getElementById("reverseBtn"),
+    deckMeta: document.getElementById("deckMeta"),
+    card: document.getElementById("card"),
+    cardInner: document.getElementById("cardInner"),
+    frontContent: document.getElementById("frontContent"),
+    backContent: document.getElementById("backContent"),
+    krContent: document.getElementById("krContent"),
+    zhContent: document.getElementById("zhContent"),
+    posTag: document.getElementById("posTag"),
+    wordText: document.getElementById("wordText"),
+    zhText: document.getElementById("zhText"),
+    guideText: document.getElementById("guideText"),
+    sealMark: document.getElementById("sealMark"),
+    prevBtn: document.getElementById("prevBtn"),
+    nextBtn: document.getElementById("nextBtn"),
+    learnBtn: document.getElementById("learnBtn"),
+    emptyState: document.getElementById("emptyState"),
+    progressFill: document.getElementById("progressFill"),
+    progressLabel: document.getElementById("progressLabel")
+  };
+
+  var LEVELS = [["all", "全部"], ["초급", "初級"], ["중급", "中級"]];
+  var STATUSES = [["all", "全部"], ["learning", "還在學"], ["learned", "已學會"]];
+
+  function buildChips(container, items, activeKey, attr, onPick) {
+    container.innerHTML = "";
+    items.forEach(function (pair) {
+      var btn = document.createElement("button");
+      btn.className = "chip";
+      btn.type = "button";
+      btn.textContent = pair[1];
+      btn.setAttribute("aria-pressed", String(pair[0] === activeKey));
+      btn.addEventListener("click", function () { onPick(pair[0]); });
+      container.appendChild(btn);
+    });
+  }
+
+  function renderChips() {
+    buildChips(el.levelChips, LEVELS, state.levelFilter, "level", function (val) {
+      state.levelFilter = val;
+      computeDeck();
+      persistPrefs();
+      render();
+    });
+    buildChips(el.statusChips, STATUSES, state.statusFilter, "status", function (val) {
+      state.statusFilter = val;
+      computeDeck();
+      persistPrefs();
+      render();
+    });
+    el.shuffleBtn.setAttribute("aria-pressed", String(state.shuffle));
+    el.reverseBtn.setAttribute("aria-pressed", String(state.reversed));
+    el.reverseBtn.textContent = state.reversed ? "中 → 韓" : "韓 → 中";
+  }
+
+  function applyDirection() {
+    el.krContent.hidden = false;
+    el.zhContent.hidden = false;
+    if (state.reversed) {
+      el.frontContent.appendChild(el.zhContent);
+      el.backContent.appendChild(el.krContent);
+    } else {
+      el.frontContent.appendChild(el.krContent);
+      el.backContent.appendChild(el.zhContent);
+    }
+  }
+
+  function renderProgress() {
+    var total = state.deck.length;
+    var learnedCount = state.deck.filter(function (v) { return !!state.learned[v.word]; }).length;
+    var pct = total ? Math.round((learnedCount / total) * 100) : 0;
+    el.progressFill.style.width = pct + "%";
+    el.progressLabel.textContent = learnedCount + " / " + total + " 已學會";
+  }
+
+  function renderCard() {
+    var card = currentCard();
+    el.card.classList.toggle("is-flipped", state.flipped);
+
+    if (!card) {
+      el.card.style.visibility = "hidden";
+      document.querySelector(".controls").style.visibility = "hidden";
+      el.emptyState.hidden = false;
+      el.deckMeta.textContent = "";
+      return;
+    }
+    el.card.style.visibility = "visible";
+    document.querySelector(".controls").style.visibility = "visible";
+    el.emptyState.hidden = true;
+    applyDirection();
+
+    var parsed = parseWord(card.word);
+    el.wordText.innerHTML = parsed.base + (parsed.num ? "<sup>" + toSuperscript(parsed.num) + "</sup>" : "");
+    el.posTag.textContent = translatePos(card.pos) + " · " + (card.level === "초급" ? "初級" : "中級");
+    el.zhText.textContent = card.zh || "（尚無翻譯）";
+    el.guideText.textContent = card.guide || "";
+
+    var isLearned = !!state.learned[card.word];
+    el.card.classList.toggle("is-learned", isLearned);
+    el.learnBtn.textContent = isLearned ? "取消已學會" : "標記已學會";
+    el.learnBtn.setAttribute("data-active", String(isLearned));
+
+    el.deckMeta.textContent = "第 " + (state.index + 1) + " / " + state.deck.length + " 張";
+    el.prevBtn.disabled = state.deck.length <= 1;
+    el.nextBtn.disabled = state.deck.length <= 1;
+  }
+
+  function snapCard(fn) {
+    // updates the card without animating the flip transform, so switching
+    // words/filters never looks like the card is spinning back around
+    el.cardInner.classList.add("no-transition");
+    fn();
+    void el.cardInner.offsetWidth; // force reflow so the class change takes effect first
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        el.cardInner.classList.remove("no-transition");
+      });
+    });
+  }
+
+  function render() {
+    snapCard(function () {
+      renderChips();
+      renderProgress();
+      renderCard();
+    });
+  }
+
+  /* ---------- actions ---------- */
+  function goTo(delta) {
+    if (!state.deck.length) return;
+    state.index = (state.index + delta + state.order.length) % state.order.length;
+    state.flipped = false;
+    state.positions[deckKey()] = state.index;
+    snapCard(renderCard);
+  }
+
+  function toggleFlip() {
+    if (!state.deck.length) return;
+    state.flipped = !state.flipped;
+    renderCard();
+  }
+
+  function toggleLearned() {
+    var card = currentCard();
+    if (!card) return;
+    if (state.learned[card.word]) {
+      delete state.learned[card.word];
+    } else {
+      state.learned[card.word] = true;
+    }
+    persistLearned();
+    if (state.statusFilter !== "all") {
+      computeDeck();
+    }
+    render();
+  }
+
+  function toggleReversed() {
+    state.reversed = !state.reversed;
+    state.flipped = false;
+    persistPrefs();
+    render();
+  }
+
+  /* ---------- events ---------- */
+  el.card.addEventListener("click", toggleFlip);
+  el.prevBtn.addEventListener("click", function () { goTo(-1); });
+  el.nextBtn.addEventListener("click", function () { goTo(1); });
+  el.learnBtn.addEventListener("click", toggleLearned);
+  el.shuffleBtn.addEventListener("click", function () {
+    state.shuffle = !state.shuffle;
+    computeDeck();
+    persistPrefs();
+    render();
+  });
+  el.reverseBtn.addEventListener("click", toggleReversed);
+  document.addEventListener("keydown", function (e) {
+    var onButton = document.activeElement && document.activeElement.tagName === "BUTTON";
+
+    if (e.key === "ArrowLeft") { e.preventDefault(); goTo(-1); return; }
+    if (e.key === "ArrowRight") { e.preventDefault(); goTo(1); return; }
+    if (e.key === "ArrowUp") { e.preventDefault(); toggleFlip(); return; }
+    if (e.key === "ArrowDown") { e.preventDefault(); toggleLearned(); return; }
+    if (e.key === " ") {
+      if (onButton) return; // let the focused button handle its own click
+      e.preventDefault();
+      toggleFlip();
+      return;
+    }
+    if (e.key === "Enter" && document.activeElement === el.card) {
+      e.preventDefault();
+      toggleFlip();
+      return;
+    }
+    if (e.key === "l" || e.key === "L") { toggleLearned(); return; }
+    if (e.key === "r" || e.key === "R") toggleReversed();
+  });
+
+  /* ---------- init ---------- */
+  (function init() {
+    var learnedIds = Storage.get(LEARNED_KEY, []);
+    var prefs = Storage.get(PREFS_KEY, {});
+    learnedIds.forEach(function (id) { state.learned[id] = true; });
+    if (prefs.levelFilter) state.levelFilter = prefs.levelFilter;
+    if (prefs.statusFilter) state.statusFilter = prefs.statusFilter;
+    if (typeof prefs.shuffle === "boolean") state.shuffle = prefs.shuffle;
+    if (typeof prefs.reversed === "boolean") state.reversed = prefs.reversed;
+    computeDeck();
+    render();
+  })();
+})();
+</script>
